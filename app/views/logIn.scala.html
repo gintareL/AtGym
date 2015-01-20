@@ -8,28 +8,41 @@
 
 @main("@Gym"){
 <script type="text/javascript">
-	
+
+	function checkFeldAnmeldung(){
+	if(document.getElementById('emailA').value.length == 0){
+			document.getElementById('emailA').style.borderColor = "#B22222";
+		}
+		
+		if(document.getElementById('passwordA').value.length == 0){
+			document.getElementById('passwordA').style.borderColor = "#B22222";
+		} 
+	}
 	function checkFeldRegistrierung(){
 	
-		if(document.getElementByName('vorname').value.length == 0){
-			document.getElementByName('vorname').style.borderColor = "#FF6A6A";
+		if(document.getElementById('vorname').value.length == 0){
+			document.getElementById('vorname').style.borderColor = "#B22222";
 		}
 		
-		if(document.getElementByName('nachname').value.length == 0){
-			document.getElementByName('nachname').style.borderColor = "#FF6A6A";
+		if(document.getElementById('nachname').value.length == 0){
+			document.getElementById('nachname').style.borderColor = "#B22222";
 		} 
-		
-		
-		if(document.getElementByName('email').value.length == 0){
-			document.getElementByName('email').style.borderColor = "#FF6A6A";
+		if(!document.getElementById('frau').checked && !document.getElementById('mann').checked ){
+			
+			document.getElementById('fraut').style.color = "#B22222";
+			document.getElementById('mannt').style.color = "#B22222";
 		}
 		
-		if(document.getElementByName('password').value.length == 0){
-			document.getElementByName('password').style.borderColor = "#FF6A6A";
+		if(document.getElementById('emailR').value.length == 0){
+			document.getElementById('emailR').style.borderColor = "#B22222";
+		}
+		
+		if(document.getElementById('passwordR').value.length == 0){
+			document.getElementById('passwordR').style.borderColor = "#B22222";
 		} 
 		
-		if(document.getElementByName('groesse').value.length == 0){
-			document.getElementByName('groesse').style.borderColor = "#FF6A6A";
+		if(document.getElementById('groesse').value.length == 0){
+			document.getElementById('groesse').style.borderColor = "#B22222";
 		}
 		
 		
@@ -38,11 +51,15 @@
 	
 	function farbeStandard(){
 		
-		document.getElementByName('vorname').style.borderColor = "";
-		document.getElementByName('nachname').style.borderColor = "";
-		document.getElementByName('email').style.borderColor = "";
-		document.getElementByName('password').style.borderColor = "";
-		document.getElementByName('groesse').style.borderColor = "";
+		document.getElementById('vorname').style.borderColor = "";
+		document.getElementById('nachname').style.borderColor = "";
+		document.getElementById('emailR').style.borderColor = "";
+		document.getElementById('passwordR').style.borderColor = "";
+		document.getElementById('emailA').style.borderColor = "";
+		document.getElementById('passwordA').style.borderColor = "";
+		document.getElementById('groesse').style.borderColor = "";
+		document.getElementById('fraut').style.color = "";
+		document.getElementById('mannt').style.color = "";
 		
 		
 	}
@@ -54,7 +71,7 @@
 <div class="display">
 										
 			<header class="rahmen">
-				<img id="logo" src="@routes.Assets.at("images/header.jpg")">
+				<img id="logo" src="@routes.Assets.at("images/header.jpg")" alt="head"/>
 			</header>
 			
 			<section class="rahmen contentwrapLog">
@@ -62,7 +79,7 @@
 					<div class="clearfix">
 						<div class="left lseite min">
 							
-							<img id="bild" class="min" src="@routes.Assets.at("images/Picture1.png")">
+							<img id="bild" class="min" src="@routes.Assets.at("images/Picture1.png")" alt="logobild"/>
 						</div>
 						
 						<div class="left rseite">
@@ -83,17 +100,17 @@
 											@form(routes.Application.home1(),'class -> "form-horizontal", 'id -> "loginForm") {
 												<div class=" form-group @if(loginForm("email").hasErrors || loginForm("passwort").hasErrors){has-error}">
 													
-														<input type="email" class="rahmen log_eingabe"
+														<input type="email" id="emailA" class="rahmen log_eingabe"
 															   name="@loginForm("email").name"
 															   placeholder="e-mail" >
 														<span class="help-block">@{loginForm("email").error.map { error => error.message }}</span>
-														<input type="password" class="rahmen log_eingabe"
+														<input type="password" id="passwordA" class="rahmen log_eingabe"
 															   name="@loginForm("password").name"
 															   placeholder="Passwort">
 														<span class="help-block">@{loginForm("password").error.map { error => error.message }}</span>
 													
 												</div>
-												<button type="submit" class="bt rahmen buttonLog3" >Einloggen</button>
+												<button type="submit" onmouseover="checkFeldAnmeldung()" onmouseout="farbeStandard()"class="bt rahmen buttonLog3" >Einloggen</button>
 												
 											}
 											
@@ -105,23 +122,23 @@
 				@form(routes.Application.home1(),'class -> "form-horizontal", 'id -> "loginForm") {
 												<div class=" form-group @if(loginForm("vorname").hasErrors || loginForm("nachname").hasErrors || loginForm("email").hasErrors || loginForm("passwort").hasErrors || loginForm("groesse").hasErrors || loginForm("gewicht").hasErrors || loginForm("geschlecht").hasErrors){has-error}">
 													
-														<input type="email" class="rahmen log_eingabe"
+														<input type="email" id="emailR" class="rahmen log_eingabe"
 															   name="@loginForm("email").name"
 															   placeholder="E-mail" >
 														<span class="help-block">@{loginForm("email").error.map { error => error.message }}</span>
-														<input type="password" class="rahmen log_eingabe"
+														<input type="password" id="passwordR" class="rahmen log_eingabe"
 															   name="@loginForm("password").name"
 															   placeholder="Passwort">
 														<span class="help-block">@{loginForm("password").error.map { error => error.message }}</span>
-													<input type="text" class="rahmen log_eingabe"
+													<input type="text" id="vorname" class="rahmen log_eingabe"
 															   name="@loginForm("vorname").name"
 															   placeholder="Vorname">
 														<span class="help-block">@{loginForm("vorname").error.map { error => error.message }}</span>
-													<input type="text" class="rahmen log_eingabe"
+													<input type="text" id="nachname" class="rahmen log_eingabe"
 															   name="@loginForm("nachname").name"
 															   placeholder="Nachname">
 														<span class="help-block">@{loginForm("nachname").error.map { error => error.message }}</span>
-													<input type="number" class="rahmen log_eingabe_letztes"
+													<input type="number" id="groesse" class="rahmen log_eingabe_letztes"
 															   name="@loginForm("groesse").name"
 															   placeholder="Koerpergroesse (cm)" min="100" max="320/>
 														<span class="help-block">@{loginForm("groesse").error.map { error => error.message }}</span>
@@ -129,7 +146,7 @@
 															   name="@loginForm("gewicht").name"
 															   placeholder="gewicht" min="0">
 														<span class="help-block">@{loginForm("gewicht").error.map { error => error.message }}</span>-->
-													<p id="wm"><input type="radio" value="weiblich" name="@loginForm("geschlecht").name"> Weiblich   <input type="radio" value="maennlich" name="@loginForm("geschlecht").name"> Männlich</p>
+													<p id="wm"><input type="radio" id="frau" value="weiblich" name="@loginForm("geschlecht").name"> <span id="fraut">Weiblich</span>   <input type="radio" id="mann" value="maennlich" name="@loginForm("geschlecht").name"> <span id="mannt">Männlich</span></p>
 													
 														<span class="help-block">@{loginForm("geschlecht").error.map { error => error.message }}</span>
 													
@@ -137,7 +154,7 @@
 												<button type="submit" onmouseover="checkFeldRegistrierung()" onmouseout="farbeStandard()" class="bt rahmen buttonLog3" >Registrieren</button>
 												
 											}
-										
+											
 									
 										</div>
 								  </div>

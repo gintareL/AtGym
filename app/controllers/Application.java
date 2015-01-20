@@ -53,11 +53,7 @@ public class Application extends Controller {
 		
 	}
 	
-	
-	
-	public static Result index() {
-		return ok(index.render("Your new application is ready."));
-	}
+
 	
 	
 	public static Result home1() {
@@ -67,7 +63,7 @@ public class Application extends Controller {
 		if(userForm.hasErrors()){
 			
 			System.out.println("Errors gefunden!");
-			return redirect("/atGym");
+			return redirect("/");
 		}else{
 			
 			User u = userForm.get();
@@ -92,9 +88,9 @@ public class Application extends Controller {
 			
 			else{
 				JOptionPane.showMessageDialog(null, "Diese E-Mail ist schon registriert");
-				return redirect("/atGym");
+				return redirect("/");
 			} 
-		}return redirect("/atGym");
+		}return redirect("/");
 	}
 	public static Result home(){
 		session("seite", "home");
@@ -107,7 +103,7 @@ public class Application extends Controller {
 			User user = model.aktuellUserList(email);
 			return ok(home.render(user, uebungLoeschen));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}	
 	}
 	
@@ -122,7 +118,7 @@ public class Application extends Controller {
 			User user = model.aktuellUserList(email);
 			return ok(our_gym_boot.render(user, username, uebungLoeschen));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}	
 	}
 	
@@ -140,7 +136,7 @@ public class Application extends Controller {
 			String geschlecht = user.getGeschlecht();
 			return ok(myGym.render(user, username, geschlecht, uebungLoeschen));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	public static Result aboutMeg(){
@@ -283,7 +279,7 @@ public class Application extends Controller {
 			User user = model.aktuellUserList(email);
 			return ok(aboutMe.render(user, gewichtForm, bauchForm, hueftenForm, armForm, brustForm, uebungLoeschen));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -298,7 +294,7 @@ public class Application extends Controller {
 			User user = model.aktuellUserList(email);
 			return ok(myPlans.render(user, uebungLoeschen, planLoeschen));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -314,7 +310,7 @@ public class Application extends Controller {
 			
 			return ok(myRoutine.render(user, uebungLoeschen, satzSave));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -348,7 +344,7 @@ public class Application extends Controller {
 			//System.out.println("User " + user.getGewichtList().get(9).getDatumString());
 			return ok(myAnalyse.render(user, uebungLoeschen));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -370,7 +366,7 @@ public class Application extends Controller {
 				case "arme" : redirect("/arme");
 				case "schultern" : redirect("/schultern");
 				case "ruecken" : redirect("/ruecken");
-					default : redirect("/atGym");
+					default : redirect("/");
 				}
 				//return redirect("/schultern");
 			}else{
@@ -386,15 +382,15 @@ public class Application extends Controller {
 				case "arme" : return redirect("/arme");
 				case "schultern" : return redirect("/schultern");
 				case "ruecken" : return redirect("/ruecken");
-					default : return redirect("/atGym");
+					default : return redirect("/");
 				}
 				//return redirect("/schultern");
 				
 			}
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
-		return redirect("/atGym");
+		return redirect("/");
 	}
 	
 	public static Result beine(){
@@ -414,7 +410,7 @@ public class Application extends Controller {
 			SortedMap<Integer, Uebung> beineUebungen = model.uebungenListeMuskelgruppe("beine");
 			return ok(beine.render(user, beineUebungen, uebungenForm, uebungLoeschen, likes));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	public static Result bauch(){
@@ -435,7 +431,7 @@ public class Application extends Controller {
 			SortedMap<Integer, Uebung> bauchUebungen = model.uebungenListeMuskelgruppe("bauch");
 			return ok(bauch.render(user, bauchUebungen, uebungenForm, uebungLoeschen, likes));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -459,7 +455,7 @@ public class Application extends Controller {
 			SortedMap<Integer, Uebung> armeUebungen = model.uebungenListeMuskelgruppe("arme");
 			return ok(arme.render(user, armeUebungen, uebungenForm, uebungLoeschen, likes));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -472,7 +468,7 @@ public class Application extends Controller {
 			System.out.println("ich bin hier vor methode");
 			return ok(model.Plannamen(user, input));
 		} else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -493,7 +489,7 @@ public class Application extends Controller {
 			SortedMap<Integer, Uebung> brustUebungen = model.uebungenListeMuskelgruppe("brust");
 			return ok(brust.render(user, brustUebungen, uebungenForm, uebungLoeschen, likes));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -503,7 +499,7 @@ public class Application extends Controller {
 		if(likes.hasErrors()){
 			
 			System.out.println("Errors gefunden!");
-			return redirect("/atGym");
+			return redirect("/");
 		}else{
 			
 			
@@ -552,7 +548,7 @@ public class Application extends Controller {
 			SortedMap<Integer, Uebung> rueckenUebungen = model.uebungenListeMuskelgruppe("ruecken");
 			return ok(ruecken.render(user, rueckenUebungen, uebungenForm, uebungLoeschen, likes));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -575,7 +571,7 @@ public class Application extends Controller {
 
 			return ok(schultern.render(user, schulternUebungen, uebungenForm, uebungLoeschen, likes));
 		}else{
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	public static Result uebungLoeschen(){
@@ -625,9 +621,9 @@ public class Application extends Controller {
 				}
 			}
 		} else {
-			return redirect("/atGym");
+			return redirect("/");
 		}
-		return redirect("/atGym");
+		return redirect("/");
 	}
 
 	
@@ -647,7 +643,7 @@ public class Application extends Controller {
 				
 			}
 		} else {
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
@@ -669,7 +665,7 @@ public class Application extends Controller {
 			}
 			return redirect("/myRoutine");
 		} else {
-			return redirect("/atGym");
+			return redirect("/");
 		}
 	}
 	
