@@ -258,6 +258,7 @@ public class Application extends Controller {
 			File file = picture.getFile();
 			String email = session("email");
 			User user = model.aktuellUserList(email);
+			System.out.println(file.getPath());
 			model.imageSave(user, file.getPath());
 			
 			return redirect("/aboutMe");
