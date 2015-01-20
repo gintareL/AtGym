@@ -7,6 +7,47 @@
 
 
 @main("@Gym"){
+<script type="text/javascript">
+	
+	function checkFeldRegistrierung(){
+	
+		if(document.getElementByName('vorname').value.length == 0){
+			document.getElementByName('vorname').style.borderColor = "#FF6A6A";
+		}
+		
+		if(document.getElementByName('nachname').value.length == 0){
+			document.getElementByName('nachname').style.borderColor = "#FF6A6A";
+		} 
+		
+		
+		if(document.getElementByName('email').value.length == 0){
+			document.getElementByName('email').style.borderColor = "#FF6A6A";
+		}
+		
+		if(document.getElementByName('password').value.length == 0){
+			document.getElementByName('password').style.borderColor = "#FF6A6A";
+		} 
+		
+		if(document.getElementByName('groesse').value.length == 0){
+			document.getElementByName('groesse').style.borderColor = "#FF6A6A";
+		}
+		
+		
+		
+	}
+	
+	function farbeStandard(){
+		
+		document.getElementByName('vorname').style.borderColor = "";
+		document.getElementByName('nachname').style.borderColor = "";
+		document.getElementByName('email').style.borderColor = "";
+		document.getElementByName('password').style.borderColor = "";
+		document.getElementByName('groesse').style.borderColor = "";
+		
+		
+	}
+	
+</script>
 
 
 												
@@ -93,7 +134,7 @@
 														<span class="help-block">@{loginForm("geschlecht").error.map { error => error.message }}</span>
 													
 												</div>
-												<button type="submit" class="bt rahmen buttonLog3" >Registrieren</button>
+												<button type="submit" onmouseover="checkFeldRegistrierung()" onmouseout="farbeStandard()" class="bt rahmen buttonLog3" >Registrieren</button>
 												
 											}
 										
