@@ -101,7 +101,7 @@
 				<div class="clearfix"> 
 					<div class="left breite abstand">
 					@if(user.getBild().isEmpty == true){
-						<img id="logo" class="rande" src=@user.defaultBild>
+						<img id="logo" class="rande" src=@user.defaultBild/>
 					}else{
 					<!--Bildergalerie -->
 					
@@ -122,12 +122,12 @@
 							   @for(mm <- user.getBild().keySet()){
 							     @if(mm == 1){
 								<div class="rande item active">
-								  <img class="rande" src="@user.getBild().get(mm)" alt="...">
+								  <img class="rande" src="@user.getBild().get(mm)" alt="..."/>
 								  
 								</div>
 								} else{
 								<div class="rande item">
-								  <img class="rande" src="@user.getBild().get(mm)" alt="...">
+								  <img class="rande" src="@user.getBild().get(mm)" alt="..."/>
 								  
 								</div>
 								}

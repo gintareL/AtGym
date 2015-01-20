@@ -124,6 +124,7 @@ public class Models extends Observable{
 			preparedStatement.setInt(1, userp.getId());
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()){
+				System.out.println(resultSet.getString("bild"));
 				userp.setBild(resultSet.getString("bild"));
 			}
 		} catch ( Exception e ) {
@@ -258,11 +259,14 @@ public class Models extends Observable{
 	}
 
 	public void imageSave(User userp, String file){
+		String bild = "assets//images//"+file;
+		userp.setBild(bild);
+		//"assets//images//"+file;
 		PreparedStatement preparedStatement =null;
-		Date date = new Date();
+		/*Date date = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY-hh-mm-ss");
 		String datum = dateFormat.format(date);
-		String bild = null;
+		
 		String bildname = null; 
 		try {
 			File quellDatei = new File(file);
@@ -277,7 +281,7 @@ public class Models extends Observable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		try {	
 			String sql = "insert into bild(bildid, bild, user) values (null,?,?);";
 

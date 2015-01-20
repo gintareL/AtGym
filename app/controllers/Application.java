@@ -245,17 +245,24 @@ public class Application extends Controller {
 	}
 	
 	public static Result upload() {
+		
 		MultipartFormData body = request().body().asMultipartFormData();
 		FilePart picture = body.getFile("picture");
 		if (picture != null) {
 			String fileName = picture.getFilename();
-			
-			String contentType = picture.getContentType(); 
-			File file = picture.getFile();
 			String email = session("email");
 			User user = model.aktuellUserList(email);
-			System.out.println(file.getPath());
-			model.imageSave(user, file.getPath());
+			String contentType = picture.getContentType(); 
+			File file = picture.getFile();
+			String bild = user.getPassword()+"_"+fileName;
+			 File newFile = new File(".//public//images//" + bild);
+			   file.renameTo(newFile); //here you are moving photo to new directory          
+                System.out.println(newFile.getPath()); //this path you can store in database
+			
+			
+		
+			//model.imageSave(user, newFile.getPath());
+			model.imageSave(user, bild);
 			
 			return redirect("/aboutMe");
 		} else {
