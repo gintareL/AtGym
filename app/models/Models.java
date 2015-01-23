@@ -1178,7 +1178,7 @@ public class Models extends Observable{
 				setChanged();
 				notifyObservers(uebung);
 			}
-			
+			alleUebungen.get(uebung).setLike(likes); //
 			
 		} catch ( Exception e ) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );

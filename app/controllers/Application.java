@@ -513,7 +513,7 @@ public class Application extends Controller {
 			Like l = likes.get();
 			//User user = model.aktuellUser();
 			model.like(l.getId());
-			session("uebungId", Integer.toString(l.getId()));
+			//session("uebungId", Integer.toString(l.getId()));
 			//String muskelgruppe = l.getMuskelgruppe();
 			String muskelgruppe = session("muskelgruppe");
 			System.out.println("Zurueck in " + muskelgruppe);
@@ -690,7 +690,7 @@ public class Application extends Controller {
 				in.onMessage(new Callback<JsonNode>() {
 					public void invoke(JsonNode obj) {
 
-						// out.write(Model.sharedInstance.zeigeAktuelleMenge(obj));
+						// out.write(model.getInstance().zeigeAktuelleMenge(obj));
 
 					}
 
