@@ -1235,7 +1235,7 @@ public class Models extends Observable{
 		int id =  user.getId();
 		try {
 		
-			String sql = "select p.name from plan p where p.user=?;"  ;
+			String sql = "select name from plan where user=?;"  ;
 			preparedStatement =conn.prepareStatement(sql);
 							
 							
@@ -1245,7 +1245,7 @@ public class Models extends Observable{
 			System.out.println("Test sql:" + sql);
 			 
 			while ( rs.next() ) {
-					plannamen.add(rs.getString("p.name"));
+					plannamen.add(rs.getString("name"));
 			}
 			boolean sorted = false;
 			String[] meinTextArray = plannamen.toArray(new String[plannamen.size()]);

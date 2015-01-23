@@ -428,7 +428,19 @@ color : rgba(220,160,140,0);
 }
 
 #auswahlfeld{
+position: relative;
+background:withe;
+z-index:2;
+width:162px;
 	
+}
+.auswahldiv{
+border-bottom: solid 1px;
+}
+
+.auswahlzeile{
+color:black;
+text-decoration: none;
 }
 
 

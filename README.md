@@ -68,20 +68,33 @@ Außerhalb der <section> befindet sich das Hintergrundbild und die Navigationsle
 abgebildet. Die Navigation befindet sich in dem dafür vorgesehenen Tag <nav> und der Footer in <footer>.
 Für die Validierung von Inputfelder wird der Typ 'number' verwendet, um sicherzustellen, dass in bestimmten <input> Tags, wie z.B. in "myRoutine.html" nur Zahlen eingegeben werden.
 In den HTML-Seiten für die Übungen, wird mithilfe von <select> und <option> eine 'drop-down list' erzeugt, um beim Hinzufügen von Übungen ein Wochentag auswählen zu können.
+Ab HTML 5 muss nicht zwingend Flash verwendet werden, sondern kann auf GIF's zurückgreifen, was in diesem Projekt auch umgesetzt wurde.
 
 ###CSS3
 CSS3 stellt neben Bootstrap das Design der HTML-Seiten dar. Für Elemente, die sich wiederholen, wurden Klassen verwendet. Für einzelne Tags eine ID. Das Design für die Klassen und ID's
 wird in der Datei "style.css" beschrieben.
-Alle Größenangaben in CSS werden relativ (in Prozent) angegeben und das Attribut 'float' verwendet, um ein Responsive Web Design zu ermöglichen.
-Media Query?
+Alle Größenangaben in CSS werden relativ (in Prozent) angegeben und das Attribut 'float' verwendet, sowie ein Media Query, um ein Responsive Web Design zu ermöglichen. Das Media Query entfernt 
+ab einer bestimmten Fenstergroesse das Bild auf der Anmeldeseite, so dass nur noch das Login Feld sichtbar ist.
+In der Menüführung werden Menübilder farbig, wenn man mit der Maus darüber fährt. Auch das wurde mithilfe von CSS3 realisiert.
+
 ###Bootstrap
 Bootstrap bietet eine Auswahl an Designelementen. Verwendet werden diese für die Navigationsleiste, Buttons, sowie Icons, wie z.B. der Stift-Icon in "aboutMe.html", um Daten zu bearbeiten.
 Auch für die ausklappbaren Panels, in denen die Übungen aufgelistet werden, stellt Bootstrap eine Design Klasse zur Verfügung.
 Um Bootstrap zu integrieren, muss zunächst die "bootstrap.js" Datei eingebunden werden. In dieser werden alle Bootstrap Komponente mit Javascript realisiert. 
-Dadurch genügt es in den HTML-Seiten nur die benötigte Klasse anzugeben.
+Dadurch genügt es in den HTML-Seiten nur die benötigte Klasse anzugeben. Zusätzlich wurde die Farbe von einzelnen Bootstrap Elementen angepasst, um ein stimmiges Design zu kreieren.
+
 ###JavaScript
+
 ###JQuery
+JQUery ist eine kleine JavaScript Bibliothek, die unteranderem Funktionen für die DOM Manipulation, Events, Animationen, Ajax zur Verfügung stellt. Dadurch, dass JQuery Funktionen kompakt
+gehalten werden, ist es einfach diese zu benutzen, statt JavaScript.
+Auf der Website wurden vor allem alle aufklappbaren Chronikanzeigen über die toggle() Funktion. Vorraussetzung dafür ist das Einbinden der "jquery.js".
+
 ###Ajax
+Ajax wird genutzt, um vom Server Inhalte nachzuladen, ohne die Website zu aktualisieren. In diesem Projekt, wird Ajax benutzt, um beim Hinzufügen von Plannamen eine Auswahl an bereits 
+erestellten Plänen anzuzeigen. Dabei werden nur die Namen angezeigt, die mit den, vom Benutzer bereits eingegebenen, Buchstaben übereinstimmen.
+Im jeweiligen Inputfeld wird die JavaScript Funktion "Ajaxaufruf(eingabe)". Der Übergabewert  'eingbabe' beinhaltet die eingegebenen Buchstaben. Damit startet die Ajax-Anfrage.
+
 ###WebSockets
 ###JSON
 ##Weitere Ideen
