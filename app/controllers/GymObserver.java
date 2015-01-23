@@ -34,10 +34,8 @@ public class GymObserver implements java.util.Observer {
 			jsonUebung = mapper.readTree("{\"uebung\":\""+uebungId+"\"}");
 			System.out.println("JSON: "+jsonUebung);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

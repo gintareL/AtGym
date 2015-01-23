@@ -71,7 +71,7 @@ public class Application extends Controller {
 			if(u.getEmail() != null & u.getPassword() != null ){
 				User user;
 				if(u.getVorname() == null  && model.checkUser(u.getEmail(), u.getPassword()) == true){
-					//user = model.aktuellUser();
+				
 					user=model.aktuellUserList(u.getEmail());
 					
 					session("User1", user.getVorname());
@@ -79,7 +79,7 @@ public class Application extends Controller {
 					return ok(home_boot.render(user, uebungLoeschen));
 				} else if(u.getVorname() != null && model.neuerUser(userForm.get())==true){
 					user=model.aktuellUserList(u.getEmail());
-					//user = model.aktuellUser();
+				
 					session("User1", user.getVorname());
 					
 					return ok(home_boot.render(user, uebungLoeschen));
@@ -125,7 +125,7 @@ public class Application extends Controller {
 	public static Result myGym(){
 		session("seite", "myGym");
 		Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
-		//User user = model.aktuellUser();
+		
 		String username = session("User1");
 		
 		
@@ -149,11 +149,11 @@ public class Application extends Controller {
 			
 			String email = session("email");
 			Gewicht g = gewichtForm.get();
-			//User user = model.aktuellUser();
+			
 			User user = model.aktuellUserList(email);
 			user.setGewicht(g);
 			model.gewichtCheck(user);
-			//System.out.println(g.getGewicht());
+			
 			return redirect("/aboutMe");
 			
 		}
@@ -169,7 +169,7 @@ public class Application extends Controller {
 			
 			
 			Bauchumfang g = bauchForm.get();
-			//User user = model.aktuellUser();
+		
 			String email = session("email");
 			User user = model.aktuellUserList(email);
 			System.out.println(g.getUmfang());
@@ -189,9 +189,8 @@ public class Application extends Controller {
 			return redirect("/aboutMe");
 		}else{
 			
-			
 			Hueftenumfang g = hueftenForm.get();
-			//User user = model.aktuellUser();
+			
 			String email = session("email");
 			User user = model.aktuellUserList(email);
 			user.setHueftenumfang(g);
@@ -212,7 +211,7 @@ public class Application extends Controller {
 			
 			
 			Armumfang g = armForm.get();
-			//User user = model.aktuellUser();
+			
 			String email = session("email");
 			User user = model.aktuellUserList(email);
 			user.setArmumfang(g);
@@ -233,7 +232,7 @@ public class Application extends Controller {
 			
 			
 			Brustumfang g = brustForm.get();
-			//	User user = model.aktuellUser();
+		
 			String email = session("email");
 			User user = model.aktuellUserList(email);
 			user.setBrustumfang(g);
@@ -259,9 +258,6 @@ public class Application extends Controller {
 			   file.renameTo(newFile); //here you are moving photo to new directory          
                 System.out.println(newFile.getPath()); //this path you can store in database
 			
-			
-		
-			//model.imageSave(user, newFile.getPath());
 			model.imageSave(user, bild);
 			
 			return redirect("/aboutMe");
@@ -279,7 +275,6 @@ public class Application extends Controller {
 		Form<Hueftenumfang> hueftenForm = Form.form(Hueftenumfang.class);
 		Form<Armumfang> armForm = Form.form(Armumfang.class);
 		Form<Brustumfang> brustForm = Form.form(Brustumfang.class);
-		//User user = model.aktuellUser();
 		String username = session("User1");
 		String email = session("email");
 		if(username != null && email != null) {
@@ -294,7 +289,6 @@ public class Application extends Controller {
 		session("seite", "myPlans");
 		Form<PlanLoeschen> planLoeschen = Form.form(PlanLoeschen.class);
 		Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
-		//User user = model.aktuellUser();
 		String username = session("User1");
 		String email = session("email");
 		if(username != null && email != null) {
@@ -309,7 +303,7 @@ public class Application extends Controller {
 		session("seite", "myRoutine");
 		Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
 		Form<Satz> satzSave = Form.form(Satz.class);
-		//User user = model.aktuellUser();
+		
 		String username = session("User1");
 		String email = session("email");
 		if(username != null && email != null) {
@@ -326,29 +320,13 @@ public class Application extends Controller {
 	public static Result myAnalyse(){
 		session("seite", "myAnalyse");
 		Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
-		//User user = model.aktuellUser();
+		
 		
 		String username = session("User1");
 		String email = session("email");
 		if(username != null && email != null) {
 			User user = model.aktuellUserList(email);
 			
-			if(user.getGewichtList().isEmpty() == false){
-			
-				Gewicht[] gewichtArray = new Gewicht[user.getGewichtList().size()];
-				int j = 0;
-				gewichtArray = new Gewicht[user.getGewichtList().size()];
-		
-				for (int index : user.getGewichtList().keySet()){
-					gewichtArray[j] = user.getGewichtList().get(index);
-					j++;
-		
-				}
-			
-			}
-			
-			//System.out.println("User " + user.getVorname());
-			//System.out.println("User " + user.getGewichtList().get(9).getDatumString());
 			return ok(myAnalyse.render(user, uebungLoeschen));
 		}else{
 			return redirect("/");
@@ -375,11 +353,11 @@ public class Application extends Controller {
 				case "ruecken" : redirect("/ruecken");
 					default : redirect("/");
 				}
-				//return redirect("/schultern");
+				
 			}else{
 				
 				Auswaehlen g = uebungForm.get();
-				//User user = model.aktuellUser();
+				
 				User user = model.aktuellUserList(email);
 				model.planHinzufuegen(user, g.getId(), g.getSatz(), g.getTag(), g.getPlan());
 				switch(muskelgruppe){
@@ -391,7 +369,7 @@ public class Application extends Controller {
 				case "ruecken" : return redirect("/ruecken");
 					default : return redirect("/");
 				}
-				//return redirect("/schultern");
+				
 				
 			}
 		}else{
@@ -412,7 +390,7 @@ public class Application extends Controller {
 			Form<Like> likes = Form.form(Like.class);
 			Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
 			Form<Auswaehlen> uebungenForm = Form.form(Auswaehlen.class);
-			//User user = model.aktuellUser();
+			
 			User user = model.aktuellUserList(email);
 			SortedMap<Integer, Uebung> beineUebungen = model.uebungenListeMuskelgruppe("beine");
 			return ok(beine.render(user, beineUebungen, uebungenForm, uebungLoeschen, likes));
@@ -433,7 +411,7 @@ public class Application extends Controller {
 			Form<Like> likes = Form.form(Like.class);
 			Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
 			Form<Auswaehlen> uebungenForm = Form.form(Auswaehlen.class);
-			//User user = model.aktuellUser();
+			
 			User user = model.aktuellUserList(email);
 			SortedMap<Integer, Uebung> bauchUebungen = model.uebungenListeMuskelgruppe("bauch");
 			return ok(bauch.render(user, bauchUebungen, uebungenForm, uebungLoeschen, likes));
@@ -455,10 +433,10 @@ public class Application extends Controller {
 			Form<Like> likes = Form.form(Like.class);
 			Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
 			Form<Auswaehlen> uebungenForm = Form.form(Auswaehlen.class);
-			//User user = model.aktuellUser();
+			
 			User user = model.aktuellUserList(email);
 
-			//	SortedMap<Integer, Uebung> armeUebungen = model.arme();
+			
 			SortedMap<Integer, Uebung> armeUebungen = model.uebungenListeMuskelgruppe("arme");
 			return ok(arme.render(user, armeUebungen, uebungenForm, uebungLoeschen, likes));
 		}else{
@@ -469,10 +447,10 @@ public class Application extends Controller {
 	public static Result plannameVervollstaendigung(String input){
 		String username = session("User1");
 		String email = session("email");
-		System.out.println("ich bin vor app if abfrage");
+		
 		if(username != null && email != null){
 			User user = model.aktuellUserList(email);
-			System.out.println("ich bin hier vor methode");
+	
 			return ok(model.Plannamen(user, input));
 		} else{
 			return redirect("/");
@@ -491,7 +469,7 @@ public class Application extends Controller {
 			Form<Like> likes = Form.form(Like.class);
 			Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
 			Form<Auswaehlen> uebungenForm = Form.form(Auswaehlen.class);
-			//User user = model.aktuellUser();
+			
 			User user = model.aktuellUserList(email);
 			SortedMap<Integer, Uebung> brustUebungen = model.uebungenListeMuskelgruppe("brust");
 			return ok(brust.render(user, brustUebungen, uebungenForm, uebungLoeschen, likes));
@@ -511,10 +489,10 @@ public class Application extends Controller {
 			
 			
 			Like l = likes.get();
-			//User user = model.aktuellUser();
+			
 			model.like(l.getId());
 			session("uebungId", Integer.toString(l.getId()));
-			//String muskelgruppe = l.getMuskelgruppe();
+			
 			String muskelgruppe = session("muskelgruppe");
 			System.out.println("Zurueck in " + muskelgruppe);
 			if(muskelgruppe.equals("arme")){
@@ -550,7 +528,7 @@ public class Application extends Controller {
 			Form<Like> likes = Form.form(Like.class);
 			Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
 			Form<Auswaehlen> uebungenForm = Form.form(Auswaehlen.class);
-			//User user = model.aktuellUser();
+			
 			User user = model.aktuellUserList(email);
 			SortedMap<Integer, Uebung> rueckenUebungen = model.uebungenListeMuskelgruppe("ruecken");
 			return ok(ruecken.render(user, rueckenUebungen, uebungenForm, uebungLoeschen, likes));
@@ -572,7 +550,7 @@ public class Application extends Controller {
 			Form<Like> likes = Form.form(Like.class);
 			Form<uebungLoeschen> uebungLoeschen = Form.form(uebungLoeschen.class);
 			Form<Auswaehlen> uebungenForm = Form.form(Auswaehlen.class);
-			//	User user = model.aktuellUser();
+		
 			User user = model.aktuellUserList(email);
 			SortedMap<Integer, Uebung> schulternUebungen = model.uebungenListeMuskelgruppe("schultern");
 

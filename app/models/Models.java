@@ -96,7 +96,6 @@ public class Models extends Observable{
 					armumfangList(userToList);
 					hueftenList(userToList);
 					brustumfangList(userToList); 
-					//routineAuslesen(userToList);
 					plaene(userToList);
 					alleUser.put(em, userToList);
 					System.out.println("User: " + userid);
@@ -247,7 +246,6 @@ public class Models extends Observable{
 			}finally {
 				try { if (rs != null) rs.close(); } catch (Exception e) {};
 				try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
-				//	try { if (conn != null) conn.close(); } catch (Exception e) {};
 			}
 		} else{
 			return false;
@@ -298,7 +296,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 		
 		
@@ -344,26 +342,14 @@ public class Models extends Observable{
 			while ( rs.next() ) {
 				u.getGewichtList().put(rs.getInt("id"), new Gewicht(rs.getDouble("umfang"), rs.getString("datum")));
 			}
-		/*	if(u.getGewichtList().isEmpty() == false){
-			
-			Gewicht[] gewichtArray = new Gewicht[u.getGewichtList().size()];
-		int j = 0;
-		gewichtArray = new Gewicht[u.getGewichtList().size()];
 		
-		for (int index : u.getGewichtList().keySet()){
-			gewichtArray[j] = u.getGewichtList().get(index);
-			j++;
-		
-		}
-		u.setGewichtArray(gewichtArray);
-		}	*/
 		} catch ( Exception e ) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 			System.exit(0);
 		}finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 		
 		
@@ -392,7 +378,7 @@ public class Models extends Observable{
 			} finally {
 				try { if (rs != null) rs.close(); } catch (Exception e) {};
 				try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
-				//try { if (conn != null) conn.close(); } catch (Exception e) {};
+				
 			}
 		}
 	}
@@ -415,7 +401,7 @@ public class Models extends Observable{
 		}finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 	}
 
@@ -443,7 +429,7 @@ public class Models extends Observable{
 			} finally {
 				try { if (rs != null) rs.close(); } catch (Exception e) {};
 				try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
-				//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+				
 			}
 		}
 	}
@@ -466,7 +452,7 @@ public class Models extends Observable{
 		}finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (stmt != null) stmt.close(); } catch (Exception e) {};
-			//try { if (conn != null) conn.close(); } catch (Exception e) {};
+		
 		}
 	}
 
@@ -490,7 +476,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+		
 		}
 	}
 
@@ -516,7 +502,7 @@ public class Models extends Observable{
 			} finally {
 				try { if (rs != null) rs.close(); } catch (Exception e) {};
 				try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
-				//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 			}
 		}
 	}
@@ -540,7 +526,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 	}
 
@@ -568,7 +554,7 @@ public class Models extends Observable{
 			} finally {
 				try { if (rs != null) rs.close(); } catch (Exception e) {};
 				try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
-				//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+				
 			}
 		}
 	}
@@ -614,7 +600,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 		return uebungen;
 	}
@@ -653,7 +639,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 	}
 	
@@ -686,7 +672,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 		return likes;
 	}
@@ -764,7 +750,7 @@ public class Models extends Observable{
 		}finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 		
 	}
@@ -807,7 +793,6 @@ public class Models extends Observable{
 					i++;
 				}
 				routine.add(new Routine(plan, tag, uebung, satz, datum));
-				//	u.setRoutineString(plan, tag, uebung, satz, datum);
 			}
 		} catch ( Exception e ) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -818,7 +803,6 @@ public class Models extends Observable{
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
 			try { if (rs1 != null) rs1.close(); } catch (Exception e) {};
 			try { if (preparedStatement2 != null) preparedStatement2.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
 		}
 		return routine;
 	}
@@ -877,7 +861,6 @@ public class Models extends Observable{
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
 			try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
 			try { if (preparedStatement2 != null) preparedStatement2.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
 		}
 	}
 	
@@ -1054,7 +1037,7 @@ public class Models extends Observable{
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
 			try { if (preparedStatement2 != null) preparedStatement2.close(); } catch (Exception e) {};
 			try { if (preparedStatement3 != null) preparedStatement3.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 		
 	}
@@ -1078,7 +1061,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement4 != null) preparedStatement4.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 	}
 	
@@ -1116,7 +1099,7 @@ public class Models extends Observable{
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement4 != null) preparedStatement4.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+		
 		}
 	}
 
@@ -1157,7 +1140,7 @@ public class Models extends Observable{
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement4 != null) preparedStatement4.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+		
 		}
 		
 		
@@ -1187,7 +1170,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement1 != null) preparedStatement1.close(); } catch (Exception e) {};
-			//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+			
 		}
 	}
 
@@ -1230,7 +1213,7 @@ public class Models extends Observable{
 	public String Plannamen(User user, String input){
 		ArrayList<String> plannamen = new ArrayList<>();
 		String ergebnis = "";
-		//stmt = conn.createStatement();
+		
 		PreparedStatement preparedStatement = null;
 		int id =  user.getId();
 		try {
@@ -1287,7 +1270,7 @@ public class Models extends Observable{
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception e) {};
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception e) {};
-		//	try { if (conn != null) conn.close(); } catch (Exception e) {};
+		
 		}
 		
 		return ergebnis;	
