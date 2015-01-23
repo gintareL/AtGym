@@ -15,7 +15,7 @@
 		 webSocket.onmessage = receiveEvent;
 		 })
 
-		 function idSenden(idErsetzen, idUbung){
+		 function idSendenLikes(idErsetzen, idUbung){
 			ersetzen = idErsetzen;
 			uebungid = idUbung;
 			//	$("#"+ersetzen).html("Super");
@@ -153,7 +153,7 @@
 						  @form(routes.Application.like(),'class -> "form-horizontal", 'id -> "likes") {
 							  <input style="display:none;" name="@likes("muskelgruppe").name" value="@arme.get(b).getMuskelgruppe()" >
 							  <input style="display:none;" name="@likes("id").name" value="@b" >
-							  <button type="submit" onclick="idSenden('likes@b', '@b')" class="close button2 left breite9 glyphicon glyphicon-thumbs-up" aria-hidden="true"> <span  id="likes@b" >@arme.get(b).getLike()</span></button>
+							  <button type="submit" onmouseover="idSendenLikes('likes@b','@b')" class="close button2 left breite9 glyphicon glyphicon-thumbs-up" aria-hidden="true"> <span  id="likes@b" >@arme.get(b).getLike()</span></button>
 							  }
 
 							</div>

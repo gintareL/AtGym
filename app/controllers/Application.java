@@ -343,17 +343,18 @@ public class Application extends Controller {
 			Form<Auswaehlen> uebungForm = Form.form(Auswaehlen.class).bindFromRequest();
 			if(uebungForm.hasErrors()){
 				
-				System.out.println("Errors gefunden!");
+				System.out.println("Errors gefunden! ");
 				switch(muskelgruppe){
-				case "beine" : redirect("/beine");
-				case "bauch" : redirect("/bauch");
-				case "brust" : redirect("/brust");
-				case "arme" : redirect("/arme");
-				case "schultern" : redirect("/schultern");
-				case "ruecken" : redirect("/ruecken");
-					default : redirect("/");
+				case "beine" : return redirect("/beine");
+				case "bauch" : return redirect("/bauch");
+				case "brust" : return redirect("/brust");
+				case "arme" : return redirect("/arme");
+				case "schultern" : return redirect("/schultern");
+				case "ruecken" : return redirect("/ruecken");
+					default : return redirect("/");
 				}
 				
+
 			}else{
 				
 				Auswaehlen g = uebungForm.get();
@@ -373,9 +374,9 @@ public class Application extends Controller {
 				
 			}
 		}else{
-			return redirect("/");
+				return redirect("/");
 		}
-		return redirect("/");
+		//return redirect("/");
 	}
 	
 	public static Result beine(){
@@ -491,8 +492,13 @@ public class Application extends Controller {
 			Like l = likes.get();
 			
 			model.like(l.getId());
-			session("uebungId", Integer.toString(l.getId()));
+
 			
+			
+
+			//session("uebungId", Integer.toString(l.getId()));
+			//String muskelgruppe = l.getMuskelgruppe();
+
 			String muskelgruppe = session("muskelgruppe");
 			System.out.println("Zurueck in " + muskelgruppe);
 			if(muskelgruppe.equals("arme")){
@@ -668,7 +674,7 @@ public class Application extends Controller {
 				in.onMessage(new Callback<JsonNode>() {
 					public void invoke(JsonNode obj) {
 
-						// out.write(Model.sharedInstance.zeigeAktuelleMenge(obj));
+						// out.write(model.getInstance().zeigeAktuelleMenge(obj));
 
 					}
 
