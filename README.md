@@ -1,7 +1,7 @@
 #Dokumentation
          
 http://mygym.herokuapp.com       
-**@Gym** ist eine Webaplikation, die bei der Sportroutine unterstützt. Sie erlaubt dem User seinen persönlichen Trainingsplan zu erstellen, sein Training zu dokumentieren und die Trainingserfolge zu errechnen
+**@Gym** ist eine Webaplikation, die bei der Sportroutine unterstützt. Sie erlaubt dem User seinen persönlichen Trainingsplan zu erstellen, sein Training zu dokumentieren und die Trainingserfolge zu errechnen.
 
 
 
@@ -27,10 +27,10 @@ Mockups | Realisierung
 ##Funktionale Anforderungen
 Die funktionalen Anforderungen der Webapplikation *@Gym* werden im folgenden Use Cases Diagramm präsentiert:
 ![GitHub useCases](useCases.png)
-Um die Webapplikation zu nutzen muss der User sich registrieren bzw. anmelden. Nachdem er sich angemeldet hat, kann er Übungen anschauen, sie auswählen und so seine Fitnesspläne 
+Um die Webapplikation zu nutzen, muss der User sich registrieren bzw. anmelden. Nachdem er sich angemeldet hat, kann er Übungen anschauen, sie auswählen und so seine Fitnesspläne 
 erstellen. Wenn der User mindestens einen Plan erstellt hat, kann er seine Routine durchführen und die Daten eingeben. Der User kann Bilder hochladen und persönliche Daten aktualisieren. 
 Wenn die Daten aktualisiert wurden, oder wenn die Routine durchgeführt wurde, kann er die Historie anschauen. Der User kann die Pläne ändern, indem er Übungen aus dem Plan löscht oder neue 
-Übungen hinzufügt. Er kann aber auch den gesamten Plan löschen. Wenn eine Übung dem User gut gefällt, hat er die Möglichkeit, das den Anderen mitzuteilen, indem er die Übung liked.
+Übungen hinzufügt. Er kann aber auch den gesamten Plan löschen. Wenn eine Übung dem User gut gefällt, hat er die Möglichkeit, das den anderen mitzuteilen, indem er die Übung liked.
 ##Nicht-funktionale Anforderungen
 * Ansprechendes und seriöses Design
 * Kundenfreundlichkeit
@@ -39,7 +39,7 @@ Wenn die Daten aktualisiert wurden, oder wenn die Routine durchgeführt wurde, k
                   
 ##Architektur
 ###Model View Controller
-Die Webapplikation ist nach dem Schema *Model View Controller* aufgebaut, das auf dem folgen Bild dargestellt ist. 
+Die Webapplikation ist nach dem Schema *Model View Controller* aufgebaut, das auf dem folgenden Bild dargestellt ist. 
 ![GitHub mvc](mvc.png)                   
 View beinhaltet alle html Seiten. In Model befindet sich die Logik und die Datenbank. 
 Model und View können nicht direkt kommunizieren. Die Kommunikation erfolgt über den Controller. Er hat Zugriff sowohl auf Model als auch auf View. Durch ein Event bei View wird Controller benachricht, was in View geschehen 
@@ -84,11 +84,14 @@ Um Bootstrap zu integrieren, muss zunächst die "bootstrap.js" Datei eingebunden
 Dadurch genügt es in den HTML-Seiten nur die benötigte Klasse anzugeben. Zusätzlich wurde die Farbe von einzelnen Bootstrap Elementen angepasst, um ein stimmiges Design zu kreieren.
 
 ###JavaScript
+JavaScript ist ein Skriptsprache, die im Webbrowser interpretiert wird. Sie ist dazu da, um Interaktionen zu erstellen, Validierung festzulegen oder Kommunikation zum Server aufzubauen.
+Im Projekt wurde Javascript z.B. für den Zufallsgenerator der Bilder auf der Home Seite verwendet. Außerdem noch für WebSockets und Ajax.
+JavaScript kann sich entweder im Header, in einer ausgelagerten .js Datei oder mitten im HTML Body befinden. In diesem Projekt steht JavaScript im HTML Body. Dafür setzt man "script" Tags ein.
 
 ###JQuery
-JQUery ist eine kleine JavaScript Bibliothek, die unteranderem Funktionen für die DOM Manipulation, Events, Animationen, Ajax zur Verfügung stellt. Dadurch, dass JQuery Funktionen kompakt
-gehalten werden, ist es einfach diese zu benutzen, statt JavaScript.
-Auf der Website wurden vor allem alle aufklappbaren Chronikanzeigen über die toggle() Funktion. Vorraussetzung dafür ist das Einbinden der "jquery.js".
+JQuery ist eine kleine JavaScript Bibliothek, die unteranderem Funktionen für die DOM Manipulation, Events, Animationen und Ajax zur Verfügung stellt. Dadurch, dass JQuery Funktionen kompakt
+gehalten werden, ist es einfacher sie zu benutzen als JavaScript.
+Auf der Website wurden vor allem alle aufklappbaren Chronikanzeigen über die toggle() Funktion realisiert. Vorraussetzung dafür ist das Einbinden der "jquery.js" Datei.
 
 ###Ajax
 Ajax wird genutzt, um vom Server Inhalte nachzuladen, ohne die Website zu aktualisieren. In diesem Projekt, wird Ajax benutzt, um beim Hinzufügen von Plannamen eine Auswahl an bereits 
@@ -96,5 +99,19 @@ erestellten Plänen anzuzeigen. Dabei werden nur die Namen angezeigt, die mit de
 Im jeweiligen Inputfeld wird die JavaScript Funktion "Ajaxaufruf(eingabe)". Der Übergabewert  'eingbabe' beinhaltet die eingegebenen Buchstaben. Damit startet die Ajax-Anfrage.
 
 ###WebSockets
+Websockets werden in der Web-Entwicklung für alle Bereiche angewandt, in denen es wichtig ist sofort eine Veränderung zu sehen, ohne den Browser zu aktualisieren. Beispiele dafür wären Chats,
+Kommentare oder wie in diesem Projekt für Likes, die die Benutzer für Übungen vergeben können und diese in Echtzeit bei allen angemeldeten Nutzern inkrementiert werden.
+
 ###JSON
-##Weitere Ideen
+JSON steht für JavaScript Object Notation und kann mit XML verglichen werden. Verwendet wird es in Zusammenhang mit WebSockets. Darin ist die jeweilige UebungsID enthalten, deren Übung gelikt wird.
+Diese JSON Datei kann dann an alle Webbrowser verschickt werden, um die Erhöhung der Likes mitzuteilen.
+
+##Schwierigkeiten, Probleme und weitere Ideen
+Während der Entwicklung sind einige Schwierigkeiten und Probleme aufgetreten. 
+Zu den Schwierigkeiten gehört hauptsächlich die Listenstruktur. Ein User hat z.B. viele Pläne mit vielen Übungen darin, Körpermass-Listen wie z.B. Armunfang und eine Gewichtsliste. Übungen wiederrum 
+beinhalten ein Enum mit Muskelgruppen. Diese verschachtelte Struktur erforderte viel Konzentration, um nicht den Überblick zu verlieren.
+Probleme gibt es auf der Seite "myAnalyse.scala.html". Hier wurde versucht Daten aus der Gewichtsliste herauszulesen und in ein JSON Array einzufügen. Allerdings scheiterte es im Gegensatz zu dem Gewicht
+am Auslesen des Datums. Die Werte wurden zwar von der JavaScript Konsole richtig erkannt, aber im JSON Array nicht richtig angezeigt.
+Geplant war einen Gewichtsverlauf, sowie alle Körpergrößen in einer Statistik darzustellen, um einen Gesamtüberblick über die Entwicklung des Körpers zu erhalten. Diese Grafiken sollten dann in einer 
+Slideshow gezeigt werden.
+Weitere Erweiterungen auf der Website können eine Messengerfunktion sein, eigene Pläne mit anderen Nutzern teilen und auch VIP Pläne anzubieten, die die Trainingseinheiten von Prominenten enthalten.

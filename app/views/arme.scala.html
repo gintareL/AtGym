@@ -179,7 +179,7 @@
 
 								</div>
 
-										<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal_@b">
+										<button type="button" onclick="idSenden('@b')" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal_@b">
 											Hinzufügen
 										</button>
 
@@ -201,16 +201,70 @@
 
 												<input style="display:none;" name="@uebungForm("id").name" value="@arme.get(b).getId()" >
 
-												<input class="left rande abstand7 abstand abstand_innen breite2" id="eingabe@b" name="@uebungForm("plan").name" type="text" placeholder="Planname" onKeyUp="Ajaxaufruf(this.value);">
-												<div id="auswahlfeld"> </div>
+												<span id="plan@b"><input id="input@b" class="left rande abstand7 abstand abstand_innen breite2" id="eingabe@b" name="@uebungForm("plan").name" type="text" placeholder="Planname" onKeyUp="Ajaxaufruf(this.value);"></span>
+												
 
 
-												<script language="JavaScript" type="text/javascript">
+
+												  <select class="left abstand_innen1 rande breite1 abstand" name="@uebungForm("tag").name">
+															<option>Montag</option>
+															<option>Dienstag</option>
+															<option>Mittwoch</option>
+															<option>Donnerstag</option>
+															<option>Freitag</option>
+															<option>Samstag</option>
+															<option>Sonntag</option>
+														  </select>
+
+
+												<input class="left rande abstand abstand_innen breite1" name="@uebungForm("satz").name" type="number" min="1" placeholder="Sätze">
+												</div>
+												<div id="auswahlfeld@b"> </div>
+										  </div>
+										  <div class="modal-footer">
+
+											<button type="submit" class="btn btn-primary">Save</button>
+
+										  </div>
+										  }
+										</div>
+									  </div>
+									</div>
+
+							</div>
+						</div>
+					  </div>
+
+
+				}
+				}else{
+					<p>Es gibt momentan keine Bauchübungen</p>
+				}
+							</div>
+
+				</div>
+			</section>
+		<footer class="rande">
+				<div class="fcenter">
+				&#169 2014 ALINA&GINTARE
+				</div>
+		</footer>
+		 <script language="JavaScript" type="text/javascript">
 													var req = null;
 													var eingabetext = "";
 													var auswahlarray = new Array();
-
-														function Ajaxaufruf(eingabe){
+													var planId = "";
+													var austauschbox = "";
+													var inputPlan = "";
+													
+													function idSenden(pid){
+														planId="plan"+pid;
+														auswahlbox = "auswahlfeld"+pid;
+														inputPlan = "input"+pid;
+												
+													}
+														
+													function Ajaxaufruf(eingabe){
 														Ajax();
 														if(req) {
 															eingabetext = eingabe;
@@ -252,82 +306,31 @@
 																if (text != "") {
 																	auswahlarray = text.split(";");
 																	for ( var i in auswahlarray){
-																		auswahlinhalt += "<a href='javascript:meinMausklick(" + i + ")' id='" + i;
-																		//auswahlinhalt += "'  'class='auswahlzeile'>";
-																		auswahlinhalt += "<div class='auswahlzeile auswahldiv abstand6 left rande abstand7 abstand abstand_innen breite2'>";
-																		auswahlinhalt += auswahlarray[i] + "</div></a>";
+																		auswahlinhalt += "<input type='button' class='close1 abstand1' onclick='javascript:meinMausklick("+i+")' value='"+auswahlarray[i]+"'>";
+																		
 																	}
-																	document.getElementById( "auswahlfeld" ).innerHTML = auswahlinhalt;
+																	document.getElementById( auswahlbox).innerHTML = auswahlinhalt;
 																}
 
-																if( auswahlinhalt != "" ) {
-																	document.getElementById( "auswahlfeld" ).style.visibility = "visible";
+																if( auswahlinhalt != "" & document.getElementById(inputPlan).value != "") {
+																	document.getElementById( auswahlbox).style.visibility = "visible";
 																} else {
-																	document.getElementById( "auswahlfeld" ).style.visibility = "hidden";
+																	document.getElementById( auswahlbox ).style.visibility = "hidden";
 																}
 															}
 														}
 
 													}
 
-													function meinMausklick( i ) {
-														if( auswahlarray[i] != null && auswahlarray[i] != "" ) {
-															//var eingabefeld = document.uebungForm.plan;
-															var test = document.getElementById("eingabe" + @b);
-															console.log(test);
-															alert(test);
-															test.value = auswahlarray[i];
-															//eingabefeld.focus();
-															//document.getElementById( "ergebnisanzeige" ).innerHTML = auswahlarray[i];
-															//document.getElementById( "auswahlfeld" ).style.visibility = "hidden";
-														}
+													function meinMausklick(i) {
+														var planText = auswahlarray[i];
+														
+														document.getElementById(planId).innerHTML="<input class='left abstand_innen rande abstand7 abstand breite2' name='plan' value='"+planText+"'></input>";
+												
 													}
 
 
 
 												</script>
-
-												  <select class="left abstand_innen1 rande breite1 abstand" name="@uebungForm("tag").name">
-															<option>Montag</option>
-															<option>Dienstag</option>
-															<option>Mittwoch</option>
-															<option>Donnerstag</option>
-															<option>Freitag</option>
-															<option>Samstag</option>
-															<option>Sonntag</option>
-														  </select>
-
-
-												<input class="left rande abstand abstand_innen breite1" name="@uebungForm("satz").name" type="number" min="1" placeholder="Sätze">
-												</div>
-
-										  </div>
-										  <div class="modal-footer">
-
-											<button type="submit" class="btn btn-primary">Save</button>
-
-										  </div>
-										  }
-										</div>
-									  </div>
-									</div>
-
-							</div>
-						</div>
-					  </div>
-
-
-				}
-				}else{
-					<p>Es gibt momentan keine Bauchübungen</p>
-				}
-							</div>
-
-				</div>
-			</section>
-		<footer class="rande">
-				<div class="fcenter">
-				&#169 2014 ALINA&GINTARE
-				</div>
-		</footer>
+		</div>
 	}

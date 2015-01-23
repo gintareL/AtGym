@@ -191,8 +191,7 @@
 										   <div class=" form-group @if(uebungForm("satz").hasErrors || uebungForm("tag").hasErrors || uebungForm("plan").hasErrors){has-error}">
 												
 												<input style="display:none;" name="@uebungForm("id").name" value="@bauch.get(b).getId()" >
-												<span id="plan@b"><input class="left rande abstand7 abstand abstand_innen breite2"  name="@uebungForm("plan").name" type="text" onKeyUp="Ajaxaufruf(this.value);" placeholder="Planname"/></span>
-												<span ></span>
+												<span id="plan@b"><input id="input@b" class="left rande abstand7 abstand abstand_innen breite2"  name="@uebungForm("plan").name" type="text" onKeyUp="Ajaxaufruf(this.value);" placeholder="Planname"/></span>
 												
 
 														  <select class="left abstand_innen1 rande breite1 abstand" name="@uebungForm("tag").name">
@@ -245,11 +244,14 @@
 													var auswahlarray = new Array();
 													var planId = "";
 													var austauschbox = "";
+													var inputPlan = "";
 													function idSenden(pid){
 														planId="plan"+pid;
 														auswahlbox = "auswahlfeld"+pid;
+														inputPlan = "input"+pid;
 												
 													}
+														
 														
 													function Ajaxaufruf(eingabe){
 														Ajax();
@@ -293,15 +295,13 @@
 																if (text != "") {
 																	auswahlarray = text.split(";");
 																	for ( var i in auswahlarray){
-																		auswahlinhalt = "<input type='button' class='close1' onclick='javascript:meinMausklick("+i+")' value='"+auswahlarray[i]+"'>";
-																		/*auswahlinhalt += "<a href='javascript:meinMausklick()' id=auswahl'" + i;
-																		auswahlinhalt += "<div class='close auswahlzeile auswahldiv abstand6 left rande abstand7 abstand abstand_innen' value='"+auswahlarray[i]+"'>";
-																		auswahlinhalt += auswahlarray[i] + "</div></a>";*/
+																		auswahlinhalt += "<input type='button' class='close1 abstand1' onclick='javascript:meinMausklick("+i+")' value='"+auswahlarray[i]+"'>";
+																		
 																	}
 																	document.getElementById( auswahlbox).innerHTML = auswahlinhalt;
 																}
 
-																if( auswahlinhalt != "" ) {
+																if( auswahlinhalt != "" & document.getElementById(inputPlan).value != "") {
 																	document.getElementById( auswahlbox).style.visibility = "visible";
 																} else {
 																	document.getElementById( auswahlbox ).style.visibility = "hidden";
