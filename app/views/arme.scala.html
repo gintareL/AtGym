@@ -179,7 +179,7 @@
 
 								</div>
 
-										<button type="button" onclick="sendLike('@b')" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal_@b">
+										<button type="button" onclick="idSenden('@b')" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal_@b">
 											Hinzufügen
 										</button>
 
@@ -202,7 +202,7 @@
 												<input style="display:none;" name="@uebungForm("id").name" value="@arme.get(b).getId()" >
 
 												<span id="plan@b"><input id="input@b" class="left rande abstand7 abstand abstand_innen breite2" id="eingabe@b" name="@uebungForm("plan").name" type="text" placeholder="Planname" onKeyUp="Ajaxaufruf(this.value);"></span>
-												<div id="auswahlfeld"> </div>
+												
 
 
 
@@ -219,7 +219,7 @@
 
 												<input class="left rande abstand abstand_innen breite1" name="@uebungForm("satz").name" type="number" min="1" placeholder="Sätze">
 												</div>
-
+												<div id="auswahlfeld@b"> </div>
 										  </div>
 										  <div class="modal-footer">
 
@@ -256,6 +256,7 @@
 													var planId = "";
 													var austauschbox = "";
 													var inputPlan = "";
+													
 													function idSenden(pid){
 														planId="plan"+pid;
 														auswahlbox = "auswahlfeld"+pid;
