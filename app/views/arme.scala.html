@@ -252,9 +252,19 @@
 																if (text != "") {
 																	auswahlarray = text.split(";");
 																	for ( var i in auswahlarray){
-																		auswahlinhalt += "<a href='javascript:meinMausklick(" + i + ")' id='" + i;
+																		auswahlinhalt += "<div id='i' >" auswahlarray[i]; "</div>
+																		
+																	
+																	
+																	
+																	
+																	
+																	
+																	
+																	
+																		//auswahlinhalt += "<:meinMausklick(" + i + ")' id='" + i;
 																		//auswahlinhalt += "'  'class='auswahlzeile'>";
-																		auswahlinhalt += "<div class='auswahlzeile auswahldiv abstand6 left rande abstand7 abstand abstand_innen breite2'>";
+																		/*auswahlinhalt += "<div  meinMausklick(" + i + ")' id='" + i class='auswahlzeile auswahldiv abstand6 left rande abstand7 abstand abstand_innen breite2'>";
 																		auswahlinhalt += auswahlarray[i] + "</div></a>";
 																	}
 																	document.getElementById( "auswahlfeld" ).innerHTML = auswahlinhalt;
@@ -264,13 +274,13 @@
 																	document.getElementById( "auswahlfeld" ).style.visibility = "visible";
 																} else {
 																	document.getElementById( "auswahlfeld" ).style.visibility = "hidden";
-																}
+																}*/
 															}
 														}
 
 													}
 
-													function meinMausklick( i ) {
+													/*function meinMausklick( i ) {
 														if( auswahlarray[i] != null && auswahlarray[i] != "" ) {
 															//var eingabefeld = document.uebungForm.plan;
 															var test = document.getElementById("eingabe" + @b);
@@ -281,7 +291,7 @@
 															//document.getElementById( "ergebnisanzeige" ).innerHTML = auswahlarray[i];
 															//document.getElementById( "auswahlfeld" ).style.visibility = "hidden";
 														}
-													}
+													}*/
 
 
 
