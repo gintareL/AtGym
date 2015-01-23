@@ -179,7 +179,7 @@
 
 								</div>
 
-										<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal_@b">
+										<button type="button" onclick="sendLike('@b')" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal_@b">
 											Hinzufügen
 										</button>
 
@@ -201,101 +201,10 @@
 
 												<input style="display:none;" name="@uebungForm("id").name" value="@arme.get(b).getId()" >
 
-												<input class="left rande abstand7 abstand abstand_innen breite2" id="eingabe@b" name="@uebungForm("plan").name" type="text" placeholder="Planname" onKeyUp="Ajaxaufruf(this.value);">
+												<span id="plan@b"><input id="input@b" class="left rande abstand7 abstand abstand_innen breite2" id="eingabe@b" name="@uebungForm("plan").name" type="text" placeholder="Planname" onKeyUp="Ajaxaufruf(this.value);"></span>
 												<div id="auswahlfeld"> </div>
 
 
-												<script language="JavaScript" type="text/javascript">
-													var req = null;
-													var eingabetext = "";
-													var auswahlarray = new Array();
-
-														function Ajaxaufruf(eingabe){
-														Ajax();
-														if(req) {
-															eingabetext = eingabe;
-															//document.plan.focus();
-															var url = "plannameVervollstaendigung?plan=" + escape(eingabetext);
-															req.open( "GET", url, true);
-															req.onreadystatechange = callbackFct;
-															req.send( null );
-
-														}
-													}
-
-
-														function Ajax() {
-
-														 try {
-															if( window.XMLHttpRequest ) {
-																req = new XMLHttpRequest();
-															} else if( window.ActiveXObject ) {
-																req = new ActiveXObject( "Microsoft.XMLHTTP" );
-															} else {
-																alert( "Ihr Webbrowser unterstuetzt leider kein Ajax!" );
-															}
-														} catch( e ) {
-															alert( "Fehler: " + e );
-														}
-														}
-
-
-
-
-													function callbackFct(){
-														 if( 4 == req.readyState ) {
-															if( 200 != req.status ) {
-																alert( "Fehler " + req.status + ": " + req.statusText );
-															} else {
-																var auswahlinhalt = "";
-																var text = req.responseText;
-																if (text != "") {
-																	auswahlarray = text.split(";");
-																	for ( var i in auswahlarray){
-																		auswahlinhalt += "<div id='i' >" auswahlarray[i]; "</div>
-																		
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																		//auswahlinhalt += "<:meinMausklick(" + i + ")' id='" + i;
-																		//auswahlinhalt += "'  'class='auswahlzeile'>";
-																		/*auswahlinhalt += "<div  meinMausklick(" + i + ")' id='" + i class='auswahlzeile auswahldiv abstand6 left rande abstand7 abstand abstand_innen breite2'>";
-																		auswahlinhalt += auswahlarray[i] + "</div></a>";
-																	}
-																	document.getElementById( "auswahlfeld" ).innerHTML = auswahlinhalt;
-																}
-
-																if( auswahlinhalt != "" ) {
-																	document.getElementById( "auswahlfeld" ).style.visibility = "visible";
-																} else {
-																	document.getElementById( "auswahlfeld" ).style.visibility = "hidden";
-																}*/
-															}
-														}
-
-													}
-
-													/*function meinMausklick( i ) {
-														if( auswahlarray[i] != null && auswahlarray[i] != "" ) {
-															//var eingabefeld = document.uebungForm.plan;
-															var test = document.getElementById("eingabe" + @b);
-															console.log(test);
-															alert(test);
-															test.value = auswahlarray[i];
-															//eingabefeld.focus();
-															//document.getElementById( "ergebnisanzeige" ).innerHTML = auswahlarray[i];
-															//document.getElementById( "auswahlfeld" ).style.visibility = "hidden";
-														}
-													}*/
-
-
-
-												</script>
 
 												  <select class="left abstand_innen1 rande breite1 abstand" name="@uebungForm("tag").name">
 															<option>Montag</option>
@@ -340,4 +249,87 @@
 				&#169 2014 ALINA&GINTARE
 				</div>
 		</footer>
+		 <script language="JavaScript" type="text/javascript">
+													var req = null;
+													var eingabetext = "";
+													var auswahlarray = new Array();
+													var planId = "";
+													var austauschbox = "";
+													var inputPlan = "";
+													function idSenden(pid){
+														planId="plan"+pid;
+														auswahlbox = "auswahlfeld"+pid;
+														inputPlan = "input"+pid;
+												
+													}
+														
+													function Ajaxaufruf(eingabe){
+														Ajax();
+														if(req) {
+															eingabetext = eingabe;
+															//document.plan.focus();
+															var url = "plannameVervollstaendigung?plan=" + escape(eingabetext);
+															req.open( "GET", url, true);
+															req.onreadystatechange = callbackFct;
+															req.send( null );
+
+														}
+													}
+
+
+														function Ajax() {
+
+														 try {
+															if( window.XMLHttpRequest ) {
+																req = new XMLHttpRequest();
+															} else if( window.ActiveXObject ) {
+																req = new ActiveXObject( "Microsoft.XMLHTTP" );
+															} else {
+																alert( "Ihr Webbrowser unterstuetzt leider kein Ajax!" );
+															}
+														} catch( e ) {
+															alert( "Fehler: " + e );
+														}
+														}
+
+
+
+
+													function callbackFct(){
+														 if( 4 == req.readyState ) {
+															if( 200 != req.status ) {
+																alert( "Fehler " + req.status + ": " + req.statusText );
+															} else {
+																var auswahlinhalt = "";
+																var text = req.responseText;
+																if (text != "") {
+																	auswahlarray = text.split(";");
+																	for ( var i in auswahlarray){
+																		auswahlinhalt += "<input type='button' class='close1 abstand1' onclick='javascript:meinMausklick("+i+")' value='"+auswahlarray[i]+"'>";
+																		
+																	}
+																	document.getElementById( auswahlbox).innerHTML = auswahlinhalt;
+																}
+
+																if( auswahlinhalt != "" & document.getElementById(inputPlan).value != "") {
+																	document.getElementById( auswahlbox).style.visibility = "visible";
+																} else {
+																	document.getElementById( auswahlbox ).style.visibility = "hidden";
+																}
+															}
+														}
+
+													}
+
+													function meinMausklick(i) {
+														var planText = auswahlarray[i];
+														
+														document.getElementById(planId).innerHTML="<input class='left abstand_innen rande abstand7 abstand breite2' name='plan' value='"+planText+"'></input>";
+												
+													}
+
+
+
+												</script>
+		</div>
 	}
